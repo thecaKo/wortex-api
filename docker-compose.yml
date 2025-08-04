@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: bitnami/mysql:8.0
+    container_name: mysql-wortex
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=wortex123
+      - MYSQL_DATABASE=wortex-database
+      - MYSQL_USER=wortex123
+      - MYSQL_PASSWORD=wortex123
+    ports:
+      - "${DB_PORT:-3309}:3306"
+    volumes:
+      - mysql_data:/bitnami/mysql
+
+  redis:
+    image: bitnami/redis:7.2
+    container_name: redis-wortex
+    restart: always
+    environment:
+      - REDIS_PASSWORD=wortex123
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/bitnami/redis/data
+
+volumes:
+  mysql_data:
+  redis_data:
