@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum MatchStatus {
+  PENDING
+  IN_PROGRESS
+  FINISHED
+}
+
+model User {
+  id         String       @id @default(uuid())
+  email      String       @unique
+  username   String       @unique
+  password   String
+  points     Int          @default(0)
+  rank       Int?         
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  matchesAsPlayer1 Match[] @relation("Player1")
+  matchesAsPlayer2 Match[] @relation("Player2")
+  matchesWon       Match[] @relation("Winner")
+  wordEntries      WordEntry[]
+
+  @@map("users")
+}
+
+model Match {
+  id         String       @id @default(uuid())
+  player1Id  String
+  player2Id  String
+  winnerId   String?
+  status     MatchStatus  @default(PENDING)
+  startedAt  DateTime?
+  endedAt    DateTime?
+
+  player1    User         @relation("Player1", fields: [player1Id], references: [id])
+  player2    User         @relation("Player2", fields: [player2Id], references: [id])
+  winner     User?        @relation("Winner", fields: [winnerId], references: [id])
+  entries    WordEntry[]
+
+  @@map("matches")
+}
+
+model WordEntry {
+  id        String   @id @default(uuid())
+  matchId   String
+  userId    String
+  word      String
+  valid     Boolean  @default(false)
+  timestamp DateTime @default(now())
+
+  match     Match    @relation(fields: [matchId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("word_entries")
+}
