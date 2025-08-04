@@ -4,10 +4,8 @@ services:
     container_name: mysql-wortex
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=wortex123
-      - MYSQL_DATABASE=wortex-database
-      - MYSQL_USER=wortex123
-      - MYSQL_PASSWORD=wortex123
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
     ports:
       - "${DB_PORT:-3309}:3306"
     volumes:
@@ -18,9 +16,9 @@ services:
     container_name: redis-wortex
     restart: always
     environment:
-      - REDIS_PASSWORD=wortex123
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:6379"
     volumes:
       - redis_data:/bitnami/redis/data
 
