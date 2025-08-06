@@ -1,6 +1,6 @@
-import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../interface/users-repository-interface";
-import { randomUUID } from "node:crypto";
+import { Prisma, User } from '@prisma/client';
+import { UsersRepository } from '../interface/users-repository-interface';
+import { randomUUID } from 'node:crypto';
 
 export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = [];
@@ -20,10 +20,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return Promise.resolve(users);
   }
 
-  update(
-    id: string,
-    data: Prisma.UserUncheckedCreateInput
-  ): Promise<User | null> {
+  update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
     const userIndex = this.users.findIndex((user) => user.id === id);
     if (userIndex === -1) return Promise.resolve(null);
 
