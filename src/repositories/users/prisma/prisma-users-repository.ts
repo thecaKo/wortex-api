@@ -1,6 +1,6 @@
-import { Prisma, User } from "@prisma/client";
-import { prismaClient } from "@/models/prisma/prisma-client";
-import { UsersRepository } from "../interface/users-repository-interface";
+import { Prisma, User } from '@prisma/client';
+import { prismaClient } from '@/models/prisma/prisma-client';
+import { UsersRepository } from '../interface/users-repository-interface';
 
 export class PrismaUsersRepository implements UsersRepository {
   async create(data: Prisma.UserCreateInput): Promise<User> {
@@ -10,10 +10,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return user;
   }
 
-  async update(
-    id: string,
-    data: Prisma.UserUncheckedCreateInput
-  ): Promise<User | null> {
+  async update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
     const user = prismaClient.user.update({
       where: { id },
       data,
