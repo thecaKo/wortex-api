@@ -1,6 +1,6 @@
 import { Prisma, User } from '@prisma/client';
 
-export interface UsersRepository {
+export interface UsersRepositoryInterface {
   create(data: Prisma.UserCreateInput): Promise<User>;
   update(id: string, data: Prisma.UserUpdateInput): Promise<User | null>;
   delete(id: string): Promise<boolean>;

@@ -1,8 +1,8 @@
 import { $Enums, Match } from '@prisma/client';
-import { MatchesRepository } from '../interface/matches-repository-interface';
+import { MatchesRepositoryInterface } from '../interface/matches-repository-interface';
 import { prismaClient } from '@/models/prisma/prisma-client';
 
-export class PrismaMatchesRepository implements MatchesRepository {
+export class PrismaMatchesRepository implements MatchesRepositoryInterface {
   async createMatch(userId: string, opponentId: string): Promise<Match> {
     const newMatch = await prismaClient.match.create({
       data: {

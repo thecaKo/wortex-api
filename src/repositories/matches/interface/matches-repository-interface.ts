@@ -1,6 +1,6 @@
 import { Match } from '@prisma/client';
 
-export interface MatchesRepository {
+export interface MatchesRepositoryInterface {
   createMatch(userId: string, opponentId: string): Promise<Match>;
   finishMatch(matchId: string): Promise<Match | null>;
   getMatchById(id: string): Promise<Match | null>;
