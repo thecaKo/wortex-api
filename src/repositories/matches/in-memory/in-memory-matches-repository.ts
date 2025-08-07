@@ -1,8 +1,8 @@
 import { $Enums, Match } from '@prisma/client';
-import { MatchesRepository } from '../interface/matches-repository-interface';
+import { MatchesRepositoryInterface } from '../interface/matches-repository-interface';
 import { randomUUID } from 'node:crypto';
 
-export class InMemoryMatchesRepository implements MatchesRepository {
+export class InMemoryMatchesRepository implements MatchesRepositoryInterface {
   public matches: Match[] = [];
   createMatch(userId: string, opponentId: string): Promise<Match> {
     const newMatch: Match = {
