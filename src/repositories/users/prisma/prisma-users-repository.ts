@@ -1,6 +1,6 @@
-import { Prisma, User } from "@prisma/client";
-import { prismaClient } from "@/models/prisma/prisma-client";
-import { UsersRepositoryInterface } from "../interface/users-repository-interface";
+import { Prisma, User } from '@prisma/client';
+import { prismaClient } from '@/models/prisma/prisma-client';
+import { UsersRepositoryInterface } from '../interface/users-repository-interface';
 
 export class PrismaUsersRepository implements UsersRepositoryInterface {
   async create(data: Prisma.UserCreateInput): Promise<User> {
