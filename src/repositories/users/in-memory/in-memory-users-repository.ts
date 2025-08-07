@@ -1,6 +1,6 @@
-import { Prisma, User } from "@prisma/client";
-import { UsersRepositoryInterface } from "../interface/users-repository-interface";
-import { randomUUID } from "node:crypto";
+import { Prisma, User } from '@prisma/client';
+import { UsersRepositoryInterface } from '../interface/users-repository-interface';
+import { randomUUID } from 'node:crypto';
 
 export class InMemoryUsersRepository implements UsersRepositoryInterface {
   public users: User[] = [];
@@ -21,11 +21,7 @@ export class InMemoryUsersRepository implements UsersRepositoryInterface {
     return Promise.resolve(users);
   }
 
-  async update(
-    id: string,
-    data: Prisma.UserUncheckedCreateInput
-  ): Promise<User | null> {
-  update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
+  async update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
     const userIndex = this.users.findIndex((user) => user.id === id);
     if (userIndex === -1) return Promise.resolve(null);
 
@@ -47,7 +43,7 @@ export class InMemoryUsersRepository implements UsersRepositoryInterface {
 
   async findByEmail(email: string): Promise<User | null> {
     const user = this.users.find((user) => user.email === email);
-    return Promise.resolve(user|| null);
+    return Promise.resolve(user || null);
   }
 
   async delete(id: string): Promise<boolean> {
