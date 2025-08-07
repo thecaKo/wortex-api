@@ -1,10 +1,11 @@
 import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../interface/users-repository-interface";
+import { UsersRepositoryInterface } from "../interface/users-repository-interface";
 import { randomUUID } from "node:crypto";
 
-export class InMemoryUsersRepository implements UsersRepository {
+export class InMemoryUsersRepository implements UsersRepositoryInterface {
   public users: User[] = [];
-  create(data: Prisma.UserCreateInput): Promise<User> {
+
+  async create(data: Prisma.UserCreateInput): Promise<User> {
     const users: User = {
       id: randomUUID(),
       username: data.username,
@@ -20,7 +21,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return Promise.resolve(users);
   }
 
-  update(
+  async update(
     id: string,
     data: Prisma.UserUncheckedCreateInput
   ): Promise<User | null> {
@@ -42,23 +43,29 @@ export class InMemoryUsersRepository implements UsersRepository {
     this.users[userIndex] = updatedUser;
     return Promise.resolve(updatedUser);
   }
-  delete(id: string): Promise<boolean> {
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = this.users.find((user) => user.email === email);
+    return Promise.resolve(user|| null);
+  }
+
+  async delete(id: string): Promise<boolean> {
     const userIndex = this.users.findIndex((user) => user.id === id);
     if (userIndex === -1) return Promise.resolve(false);
     this.users.splice(userIndex, 1);
     return Promise.resolve(true);
   }
 
-  findAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return Promise.resolve(this.users);
   }
 
-  findById(id: string): Promise<User | null> {
+  async findById(id: string): Promise<User | null> {
     const user = this.users.find((user) => user.id === id);
     return Promise.resolve(user || null);
   }
 
-  findByUsername(username: string): Promise<User | null> {
+  async findByUsername(username: string): Promise<User | null> {
     const user = this.users.find((user) => user.username === username);
     return Promise.resolve(user || null);
   }
