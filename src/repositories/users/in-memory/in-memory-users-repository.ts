@@ -25,6 +25,7 @@ export class InMemoryUsersRepository implements UsersRepositoryInterface {
     id: string,
     data: Prisma.UserUncheckedCreateInput
   ): Promise<User | null> {
+  update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
     const userIndex = this.users.findIndex((user) => user.id === id);
     if (userIndex === -1) return Promise.resolve(null);
 

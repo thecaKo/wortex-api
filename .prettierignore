@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+
+# Database
+prisma/migrations/
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# Docker
+Dockerfile*
+docker-compose*.yml

@@ -10,10 +10,7 @@ export class PrismaUsersRepository implements UsersRepositoryInterface {
     return user;
   }
 
-  async update(
-    id: string,
-    data: Prisma.UserUncheckedCreateInput
-  ): Promise<User | null> {
+  async update(id: string, data: Prisma.UserUncheckedCreateInput): Promise<User | null> {
     const user = prismaClient.user.update({
       where: { id },
       data,
