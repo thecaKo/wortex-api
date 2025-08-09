@@ -38,22 +38,17 @@ npm run dev
 
 ## Padrões de Commit
 
-| Descrição                       | Emoji | Tipo       |
-| ------------------------------- | ----- | ---------- |
-| Adicionando um teste            | ✅    | `test`     |
-| Alterações de revisão de código | 👌    | `style`    |
-| Bugfix                          | 🐛    | `fix`      |
-| Comentários                     | 💡    | `docs`     |
-| Feat                            | 💡    | `docs`     |
-| Deploy                          | 🚀    |            |
-| Documentação                    | 📚    | `docs`     |
-| Estilização de interface        | 💄    | `feat`     |
-| Package.json em JS              | 📦    | `build`    |
-| Performance                     | ⚡    | `perf`     |
-| Refatoração                     | ♻️    | `refactor` |
-| Removendo um arquivo            | 🔥    |            |
-| Responsividade                  | 📱    |            |
-| Segurança                       | 🔒️   |            |
-| Testes                          | 🧪    | `test`     |
-| Texto                           | 📝    |            |
-| Tipagem                         | 🏷️    | `label`    |
+| Emoji | Código               | Tipo       | Descrição                       |
+| ----- | -------------------- | ---------- | ------------------------------- |
+| ✨    | `:sparkles:`         | `feat`     | Nova funcionalidade             |
+| 🐛    | `:bug:`              | `fix`      | Correção de bug                 |
+| 📝    | `:memo:`             | `docs`     | Documentação                    |
+| 🎨    | `:art:`              | `style`    | Formatação, estilos ou UI       |
+| ♻️    | `:recycle:`          | `refactor` | Refatoração de código           |
+| ⚡️   | `:zap:`              | `perf`     | Melhorias de performance        |
+| ✅    | `:white_check_mark:` | `test`     | Testes                          |
+| 🔧    | `:wrench:`           | `chore`    | Configurações, tarefas de build |
+| 🚀    | `:rocket:`           | `deploy`   | Deploy ou release               |
+| 🔥    | `:fire:`             | `remove`   | Remoção de código/arquivos      |
+| 🔒    | `:lock:`             | `security` | Segurança                       |
+
